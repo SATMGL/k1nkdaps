@@ -10,12 +10,11 @@ html, body {
   width: 100%;
   height: 100%;
   overflow: hidden;
-  font-family: Arial, sans-serif;
   background: #0f172a;
-  color: white;
+  font-family: Arial, sans-serif;
 }
 
-/* APP = 100% LAYAR */
+/* APP FIX */
 #app {
   width: 100%;
   height: 100%;
@@ -23,62 +22,49 @@ html, body {
   grid-template-rows: 12% 8% 68% 12%;
 }
 
-/* HEADER */
-.header {
-  background: #020617;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-}
-
-/* SEARCH */
-.search {
+/* HEADER / SEARCH / BOTTOM */
+.header, .search, .bottom {
   background: #020617;
   display: flex;
   align-items: center;
   justify-content: center;
+  color: white;
 }
 
-.search input {
-  width: 90%;
-  padding: 6px;
-  border-radius: 6px;
-  border: none;
-}
-
-/* ============================= */
-/* GRID ITEM 3×3 PERSEN MURNI */
-/* ============================= */
+/* ========================= */
+/* GRID ITEM – MATEMATIS AMAN */
+/* ========================= */
 #list {
   width: 100%;
   height: 100%;
-
-  display: grid;
-
-  /* 3 kolom @30% */
-  grid-template-columns: 30% 30% 30%;
-  justify-content: space-between;
-
-  /* 3 baris @30% */
-  grid-template-rows: 30% 30% 30%;
-  align-content: space-between;
-
-  padding: 2%;
+  position: relative;
 }
 
-/* CARD SELALU FIT SLOT */
+/* BARIS */
+#list::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+}
+
+/* CARD */
 .card {
-  width: 100%;
-  height: 100%;
+  position: absolute;
+  width: 30%;
+  height: 30%;
   background: #1e293b;
-  border-radius: 12px;
+  border-radius: 10px;
 }
 
-/* MENU BAWAH */
-.bottom {
-  background: #020617;
-  display: flex;
-  align-items: center;
-  justify-content: space-around;
-}
+/* POSISI MANUAL 3x3 (AMAN 100%) */
+.card:nth-child(1) { left: 2%;  top: 2%; }
+.card:nth-child(2) { left: 35%; top: 2%; }
+.card:nth-child(3) { left: 68%; top: 2%; }
+
+.card:nth-child(4) { left: 2%;  top: 35%; }
+.card:nth-child(5) { left: 35%; top: 35%; }
+.card:nth-child(6) { left: 68%; top: 35%; }
+
+.card:nth-child(7) { left: 2%;  top: 68%; }
+.card:nth-child(8) { left: 35%; top: 68%; }
+.card:nth-child(9) { left: 68%; top: 68%; }
