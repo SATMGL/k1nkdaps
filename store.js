@@ -5,15 +5,18 @@ let PRODUCTS = [];
 
 fetch(GAS_URL, {
   method: "POST",
-  headers: { "Content-Type": "application/json" },
   body: JSON.stringify({ action: "getItems" })
 })
   .then(res => res.json())
   .then(data => {
+    if (!Array.isArray(data)) {
+      throw new Error("Invalid response");
+    }
     PRODUCTS = data;
     render(data);
   })
-  .catch(() => {
+  .catch(err => {
+    console.error(err);
     document.getElementById("list").innerHTML =
       "<p>Gagal memuat produk</p>";
   });
@@ -21,6 +24,11 @@ fetch(GAS_URL, {
 function render(items) {
   const list = document.getElementById("list");
   list.innerHTML = "";
+
+  if (items.length === 0) {
+    list.innerHTML = "<p>Belum ada produk</p>";
+    return;
+  }
 
   items.forEach(p => {
     const card = document.createElement("div");
@@ -34,7 +42,7 @@ function render(items) {
         <div class="stok">Stok: ${p.stok}</div>
       </div>
       <button class="btn"
-        onclick="order('${escape(p.nama)}','${escape(p.harga)}')">
+        onclick="order('${safe(p.nama)}','${safe(p.harga)}')">
         Order
       </button>
     `;
@@ -51,6 +59,10 @@ function order(nama, harga) {
 
 function format(x) {
   return Number(x).toLocaleString("id-ID");
+}
+
+function safe(str) {
+  return String(str).replace(/'/g, "\\'");
 }
 
 document.getElementById("search").addEventListener("input", e => {
