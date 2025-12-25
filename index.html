@@ -1,90 +1,42 @@
-/* RESET */
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <title>K1NK DAPS STORE</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
 
-/* ROOT */
-html, body {
-  width: 100%;
-  height: 100%;
-  overflow: hidden;
-  font-family: Arial, sans-serif;
-  background: #0f172a;
-  color: white;
-}
+<div id="app">
 
-/* APP = 100% LAYAR */
-#app {
-  width: 100%;
-  height: 100%;
-  display: grid;
+  <!-- HEADER -->
+  <header class="header">
+    <h1>K1NK DAPS STORE</h1>
+    <span>Digital Inventory</span>
+  </header>
 
-  /* tinggi pakai % */
-  grid-template-rows:
-    12%   /* header */
-    8%    /* search */
-    68%   /* items */
-    12%;  /* bottom */
-}
+  <!-- SEARCH / KATEGORI -->
+  <div class="search">
+    <input type="text" placeholder="Cari produk..." disabled>
+  </div>
 
-/* HEADER */
-.header {
-  background: #020617;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-}
+  <!-- GRID ITEM -->
+  <main id="list">
+    <!-- 9 CARD STATIS -->
+    <div class="card"></div><div class="card"></div><div class="card"></div>
+    <div class="card"></div><div class="card"></div><div class="card"></div>
+    <div class="card"></div><div class="card"></div><div class="card"></div>
+  </main>
 
-/* SEARCH */
-.search {
-  background: #020617;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
+  <!-- MENU BAWAH -->
+  <nav class="bottom">
+    <div>Home</div>
+    <div>Store</div>
+    <div>Profile</div>
+  </nav>
 
-.search input {
-  width: 90%;
-  padding: 6px;
-  border-radius: 6px;
-  border: none;
-}
+</div>
 
-/* ============================= */
-/* GRID ITEM 3×3 PERSEN MURNI */
-/* ============================= */
-#list {
-  width: 100%;
-  height: 100%;
-
-  display: grid;
-
-  /* lebar pakai % */
-  grid-template-columns: 30% 30% 30%;
-  justify-content: space-between;
-
-  /* tinggi pakai % */
-  grid-template-rows: 30% 30% 30%;
-  align-content: space-between;
-
-  padding: 4%;
-}
-
-/* CARD SELALU FIT SLOT */
-.card {
-  width: 100%;
-  height: 100%;
-  background: #1e293b;
-  border-radius: 12px;
-}
-
-/* MENU BAWAH */
-.bottom {
-  background: #020617;
-  display: flex;
-  align-items: center;
-  justify-content: space-around;
-}
+</body>
+</html>
