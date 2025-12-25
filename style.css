@@ -1,23 +1,32 @@
+/* RESET */
 * {
-  box-sizing: border-box;
   margin: 0;
   padding: 0;
+  box-sizing: border-box;
 }
 
+/* ROOT */
 html, body {
-  width: 100vw;
-  height: 100vh;
+  width: 100%;
+  height: 100%;
   overflow: hidden;
   font-family: Arial, sans-serif;
   background: #0f172a;
   color: white;
 }
 
+/* APP = 100% LAYAR */
 #app {
   width: 100%;
   height: 100%;
   display: grid;
-  grid-template-rows: 12% 8% 1fr 12%;
+
+  /* tinggi pakai % */
+  grid-template-rows:
+    12%   /* header */
+    8%    /* search */
+    68%   /* items */
+    12%;  /* bottom */
 }
 
 /* HEADER */
@@ -25,8 +34,8 @@ html, body {
   background: #020617;
   display: flex;
   flex-direction: column;
-  justify-content: center;
   align-items: center;
+  justify-content: center;
 }
 
 /* SEARCH */
@@ -44,111 +53,35 @@ html, body {
   border: none;
 }
 
-/* GRID 3x3 FIX */
+/* ============================= */
+/* GRID ITEM 3×3 PERSEN MURNI */
+/* ============================= */
 #list {
-  padding: 8px;
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  grid-template-rows: repeat(3, 1fr);
-  gap: 8px;
-}
-
-/* CARD FIT SLOT */
-.card {
-  display: flex;
-  flex-direction: column;
-  background: #1e293b;
-  border-radius: 10px;
-  overflow: hidden;
-  min-height: 0; /* PENTING */
-}
-
-/* IMAGE AUTO FIT */
-.card img {
-  flex: 0 0 45%;
   width: 100%;
-  object-fit: cover;
+  height: 100%;
+
+  display: grid;
+
+  /* lebar pakai % */
+  grid-template-columns: 30% 30% 30%;
+  justify-content: space-between;
+
+  /* tinggi pakai % */
+  grid-template-rows: 30% 30% 30%;
+  align-content: space-between;
+
+  padding: 4%;
 }
 
-/* BODY FLEX */
-.card-body {
-  flex: 1;
-  padding: 6px;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  overflow: hidden;
+/* CARD SELALU FIT SLOT */
+.card {
+  width: 100%;
+  height: 100%;
+  background: #1e293b;
+  border-radius: 12px;
 }
 
-.nama {
-  font-size: clamp(10px, 2.5vw, 13px);
-  font-weight: bold;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-}
-
-.harga {
-  font-size: clamp(9px, 2.2vw, 12px);
-  color: #22c55e;
-}
-
-.stok {
-  font-size: clamp(8px, 2vw, 10px);
-  opacity: 0.7;
-}
-
-/* BUTTON AUTO */
-.btn {
-  font-size: clamp(9px, 2vw, 12px);
-  margin: 4px;
-  padding: 4px;
-  border-radius: 6px;
-  border: none;
-  background: #22c55e;
-}
-
-/* EMPTY */
-.card.empty {
-  background: #020617;
-  border: 2px dashed #334155;
-}
-
-.card.empty img,
-.card.empty .btn {
-  display: none;
-}
-
-.card.empty .card-body {
-  justify-content: center;
-  opacity: 0.6;
-}
-
-/* LOADING */
-.card.loading {
-  background: #020617;
-  position: relative;
-}
-
-.card.loading::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(
-    90deg,
-    transparent,
-    rgba(255,255,255,.08),
-    transparent
-  );
-  animation: shimmer 1.2s infinite;
-}
-
-@keyframes shimmer {
-  from { transform: translateX(-100%); }
-  to { transform: translateX(100%); }
-}
-
-/* BOTTOM */
+/* MENU BAWAH */
 .bottom {
   background: #020617;
   display: flex;
