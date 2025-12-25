@@ -2,100 +2,117 @@
   box-sizing: border-box;
 }
 
-body {
+html, body {
   margin: 0;
+  padding: 0;
+  height: 100%;
+  background: #020617;
   font-family: Arial, sans-serif;
-  background: #0f172a;
   color: white;
+  overflow: hidden; /* ⛔ body tidak scroll */
 }
 
+/* APP FULL LAYAR */
+#app {
+  position: fixed;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+/* HEADER */
 header {
+  padding: 16px;
   text-align: center;
-  padding: 24px;
   background: #020617;
+  border-bottom: 1px solid #1e293b;
 }
 
 header h1 {
   margin: 0;
-  font-size: 26px;
+  font-size: 22px;
 }
 
 header p {
-  margin: 6px 0 0;
+  margin: 4px 0 0;
+  font-size: 13px;
   opacity: .7;
 }
 
+/* SEARCH */
 .toolbar {
-  padding: 14px;
+  padding: 10px;
   text-align: center;
+  background: #020617;
 }
 
 .toolbar input {
   width: 90%;
-  max-width: 400px;
+  max-width: 360px;
   padding: 10px 14px;
   border-radius: 10px;
   border: none;
   outline: none;
 }
 
-.grid {
+/* GRID CONTAINER */
+#list {
+  flex: 1;
+  padding: 16px;
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-  gap: 18px;
-  padding: 20px;
+  grid-template-columns: repeat(3, 1fr); /* 🔒 FIX 3 KOLOM */
+  grid-auto-rows: 1fr;
+  gap: 16px;
+  overflow-y: auto; /* ✅ scroll di sini */
 }
 
+/* CARD */
 .card {
   background: #1e293b;
   border-radius: 14px;
-  overflow: hidden;
   display: flex;
   flex-direction: column;
-  box-shadow: 0 6px 15px rgba(0,0,0,.4);
+  overflow: hidden;
 }
 
+/* IMAGE */
 .card img {
   width: 100%;
-  height: 170px;
+  height: 120px;
   object-fit: cover;
   background: black;
 }
 
+/* BODY */
 .card-body {
-  padding: 14px;
+  padding: 10px;
   flex: 1;
 }
 
 .nama {
+  font-size: 14px;
   font-weight: bold;
-  margin-bottom: 6px;
+  margin-bottom: 4px;
 }
 
 .harga {
+  font-size: 13px;
   color: #22c55e;
   font-weight: bold;
-  margin-bottom: 6px;
 }
 
 .stok {
-  font-size: 13px;
-  opacity: .8;
+  font-size: 11px;
+  opacity: .7;
 }
 
+/* BUTTON */
 .btn {
-  margin: 12px;
-  padding: 10px;
+  margin: 8px;
+  padding: 8px;
   border: none;
-  border-radius: 10px;
+  border-radius: 8px;
   background: #22c55e;
   font-weight: bold;
   cursor: pointer;
-}
-
-footer {
-  text-align: center;
-  padding: 20px;
-  font-size: 13px;
-  opacity: .6;
 }
