@@ -2,89 +2,62 @@ const API_URL = "https://script.google.com/macros/s/AKfycbxu5UrYrzUi49Pj6mG2ZT4A
 const list = document.getElementById("list");
 const SLOT = 9;
 
-/* ============================= */
-/* INIT */
-/* ============================= */
 showLoading();
-loadProducts();
+loadItems();
 
-/* ============================= */
-/* LOADING */
-/* ============================= */
 function showLoading() {
   list.innerHTML = "";
   for (let i = 0; i < SLOT; i++) {
-    const card = document.createElement("div");
-    card.className = "card loading";
-    list.appendChild(card);
+    const c = document.createElement("div");
+    c.className = "card loading";
+    list.appendChild(c);
   }
 }
 
-/* ============================= */
-/* LOAD DATA */
-/* ============================= */
-async function loadProducts() {
+async function loadItems() {
   try {
     const res = await fetch(API_URL, {
       method: "POST",
       body: JSON.stringify({ action: "getItems" })
     });
 
-    const data = await res.json();
-    const items = Array.isArray(data) ? data : [];
-
+    const items = await res.json();
     list.innerHTML = "";
 
-    /* PRODUK */
     items.forEach(item => {
       list.appendChild(createCard(item));
     });
 
-    /* SLOT KOSONG */
-    const kosong = Math.max(0, SLOT - items.length);
-    for (let i = 0; i < kosong; i++) {
-      list.appendChild(createEmptyCard());
+    for (let i = items.length; i < SLOT; i++) {
+      list.appendChild(createEmpty());
     }
 
-  } catch (e) {
+  } catch (err) {
     list.innerHTML = "";
     for (let i = 0; i < SLOT; i++) {
-      list.appendChild(createEmptyCard("ERROR"));
+      list.appendChild(createEmpty("ERROR"));
     }
-    console.error(e);
   }
 }
 
-/* ============================= */
-/* CARD PRODUK */
-/* ============================= */
 function createCard(item) {
-  const card = document.createElement("div");
-  card.className = "card";
-
-  card.innerHTML = `
+  const c = document.createElement("div");
+  c.className = "card";
+  c.innerHTML = `
     <img src="${item.gambar || ""}">
     <div class="card-body">
-      <div class="nama">${item.nama || "-"}</div>
-      <div class="harga">Rp ${item.harga || 0}</div>
-      <div class="stok">Stok: ${item.stok || 0}</div>
+      <div class="nama">${item.nama}</div>
+      <div class="harga">Rp ${item.harga}</div>
+      <div class="stok">Stok: ${item.stok}</div>
     </div>
     <button class="btn">Beli</button>
   `;
-
-  return card;
+  return c;
 }
 
-/* ============================= */
-/* CARD KOSONG */
-/* ============================= */
-function createEmptyCard(text = "SLOT KOSONG") {
-  const card = document.createElement("div");
-  card.className = "card empty";
-
-  card.innerHTML = `
-    <div class="card-body">${text}</div>
-  `;
-
-  return card;
+function createEmpty(text = "KOSONG") {
+  const c = document.createElement("div");
+  c.className = "card empty";
+  c.innerHTML = `<div class="card-body">${text}</div>`;
+  return c;
 }
