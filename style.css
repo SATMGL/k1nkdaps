@@ -20,13 +20,7 @@ html, body {
   width: 100%;
   height: 100%;
   display: grid;
-
-  /* tinggi pakai % */
-  grid-template-rows:
-    12%   /* header */
-    8%    /* search */
-    68%   /* items */
-    12%;  /* bottom */
+  grid-template-rows: 12% 8% 68% 12%;
 }
 
 /* HEADER */
@@ -62,15 +56,15 @@ html, body {
 
   display: grid;
 
-  /* lebar pakai % */
+  /* 3 kolom @30% */
   grid-template-columns: 30% 30% 30%;
   justify-content: space-between;
 
-  /* tinggi pakai % */
+  /* 3 baris @30% */
   grid-template-rows: 30% 30% 30%;
   align-content: space-between;
 
-  padding: 4%;
+  padding: 2%;
 }
 
 /* CARD SELALU FIT SLOT */
