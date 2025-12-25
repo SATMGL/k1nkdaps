@@ -2,9 +2,28 @@ const API_URL = "https://script.google.com/macros/s/AKfycbxu5UrYrzUi49Pj6mG2ZT4A
 const list = document.getElementById("list");
 const SLOT = 9;
 
-async function loadProducts() {
-  list.innerHTML = "";
+/* ============================= */
+/* INIT */
+/* ============================= */
+showLoading();
+loadProducts();
 
+/* ============================= */
+/* LOADING */
+/* ============================= */
+function showLoading() {
+  list.innerHTML = "";
+  for (let i = 0; i < SLOT; i++) {
+    const card = document.createElement("div");
+    card.className = "card loading";
+    list.appendChild(card);
+  }
+}
+
+/* ============================= */
+/* LOAD DATA */
+/* ============================= */
+async function loadProducts() {
   try {
     const res = await fetch(API_URL, {
       method: "POST",
@@ -14,24 +33,31 @@ async function loadProducts() {
     const data = await res.json();
     const items = Array.isArray(data) ? data : [];
 
-    /* Render produk */
+    list.innerHTML = "";
+
+    /* PRODUK */
     items.forEach(item => {
       list.appendChild(createCard(item));
     });
 
-    /* Tambah slot kosong sampai 9 */
+    /* SLOT KOSONG */
     const kosong = Math.max(0, SLOT - items.length);
     for (let i = 0; i < kosong; i++) {
       list.appendChild(createEmptyCard());
     }
 
   } catch (e) {
-    list.innerHTML = `<div class="card empty"><div class="card-body">Gagal memuat produk</div></div>`;
+    list.innerHTML = "";
+    for (let i = 0; i < SLOT; i++) {
+      list.appendChild(createEmptyCard("ERROR"));
+    }
     console.error(e);
   }
 }
 
+/* ============================= */
 /* CARD PRODUK */
+/* ============================= */
 function createCard(item) {
   const card = document.createElement("div");
   card.className = "card";
@@ -49,18 +75,16 @@ function createCard(item) {
   return card;
 }
 
+/* ============================= */
 /* CARD KOSONG */
-function createEmptyCard() {
+/* ============================= */
+function createEmptyCard(text = "SLOT KOSONG") {
   const card = document.createElement("div");
   card.className = "card empty";
 
   card.innerHTML = `
-    <div class="card-body">
-      SLOT KOSONG
-    </div>
+    <div class="card-body">${text}</div>
   `;
 
   return card;
 }
-
-loadProducts();
