@@ -1,30 +1,38 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-  <meta charset="UTF-8">
+  <meta charset="UTF-8" />
   <title>K1NK DAPS STORE</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="./style.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
 
 <div id="app">
 
-  <header>
+  <!-- HEADER -->
+  <header class="header">
     <h1>K1NK DAPS STORE</h1>
-    <p>Digital Store • Fast • Trusted</p>
+    <span>Digital Inventory</span>
   </header>
 
-  <section class="toolbar">
-    <input type="text" id="search" placeholder="Cari produk...">
-  </section>
+  <!-- SEARCH / KATEGORI -->
+  <div class="search">
+    <input type="text" placeholder="Cari produk..." disabled />
+  </div>
 
-  <main id="list">
-    <p>Memuat produk...</p>
-  </main>
+  <!-- GRID ITEM -->
+  <main id="list"></main>
+
+  <!-- MENU BAWAH -->
+  <nav class="bottom">
+    <div>Home</div>
+    <div>Store</div>
+    <div>Profile</div>
+  </nav>
 
 </div>
 
-<script src="./store.js" defer></script>
+<script src="store.js"></script>
 </body>
 </html>
