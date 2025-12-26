@@ -1,63 +1,44 @@
-const API_URL = "https://script.google.com/macros/s/AKfycbxu5UrYrzUi49Pj6mG2ZT4Ajah7G7R5KPmkkcD9FJD5n1m0jOC8EYK_mldam80rDTBz/exec";
-const list = document.getElementById("list");
-const SLOT = 9;
+const Store = {
+  items: [],
 
-showLoading();
-loadItems();
-
-function showLoading() {
-  list.innerHTML = "";
-  for (let i = 0; i < SLOT; i++) {
-    const c = document.createElement("div");
-    c.className = "card loading";
-    list.appendChild(c);
-  }
-}
-
-async function loadItems() {
-  try {
+  async fetchItems() {
     const res = await fetch(API_URL, {
       method: "POST",
       body: JSON.stringify({ action: "getItems" })
     });
+    this.items = await res.json();
+    return this.items;
+  },
 
-    const items = await res.json();
-    list.innerHTML = "";
-
-    items.forEach(item => {
-      list.appendChild(createCard(item));
+  async login(password) {
+    const res = await fetch(API_URL, {
+      method: "POST",
+      body: JSON.stringify({
+        action: "login",
+        password
+      })
     });
+    return res.json();
+  },
 
-    for (let i = items.length; i < SLOT; i++) {
-      list.appendChild(createEmpty());
-    }
+  async addItem(data) {
+    await fetch(API_URL, {
+      method: "POST",
+      body: JSON.stringify({
+        action: "addItem",
+        ...data
+      })
+    });
+  },
 
-  } catch (err) {
-    list.innerHTML = "";
-    for (let i = 0; i < SLOT; i++) {
-      list.appendChild(createEmpty("ERROR"));
-    }
+  async deleteItem(id, password) {
+    await fetch(API_URL, {
+      method: "POST",
+      body: JSON.stringify({
+        action: "deleteItem",
+        id,
+        password
+      })
+    });
   }
-}
-
-function createCard(item) {
-  const c = document.createElement("div");
-  c.className = "card";
-  c.innerHTML = `
-    <img src="${item.gambar || ""}">
-    <div class="card-body">
-      <div class="nama">${item.nama}</div>
-      <div class="harga">Rp ${item.harga}</div>
-      <div class="stok">Stok: ${item.stok}</div>
-    </div>
-    <button class="btn">Beli</button>
-  `;
-  return c;
-}
-
-function createEmpty(text = "KOSONG") {
-  const c = document.createElement("div");
-  c.className = "card empty";
-  c.innerHTML = `<div class="card-body">${text}</div>`;
-  return c;
-}
+};
