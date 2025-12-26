@@ -1,96 +1,101 @@
-/* RESET */
 * {
-  margin: 0;
-  padding: 0;
   box-sizing: border-box;
 }
 
-/* ROOT */
-html, body {
-  width: 100%;
-  height: 100%;
-  overflow: hidden;
+body {
+  margin: 0;
   font-family: Arial, sans-serif;
-  background: #0b0b0b;
-  color: #e5e5e5;
-}
-
-/* APP */
-.app {
-  width: 100%;
-  height: 100%;
-  display: grid;
-  grid-template-rows: 12% 8% 1fr 12%;
-}
-
-/* HEADER */
-.header {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: #111;
-  border-bottom: 2px solid #ff0033;
-}
-
-.header h1 {
-  color: #ff0033;
-  letter-spacing: 2px;
-}
-
-/* SEARCH */
-.search {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: #111;
-  border-bottom: 1px solid #ff0033;
-}
-
-.search input {
-  width: 90%;
-  padding: 6px;
-  background: #1a1a1a;
-  border: 1px solid #ff0033;
+  background: #0f172a;
   color: white;
+}
+
+header {
+  text-align: center;
+  padding: 24px;
+  background: #020617;
+}
+
+header h1 {
+  margin: 0;
+  font-size: 26px;
+}
+
+header p {
+  margin: 6px 0 0;
+  opacity: .7;
+}
+
+.toolbar {
+  padding: 14px;
+  text-align: center;
+}
+
+.toolbar input {
+  width: 90%;
+  max-width: 400px;
+  padding: 10px 14px;
+  border-radius: 10px;
+  border: none;
   outline: none;
 }
 
-/* ============================= */
-/* GRID 3x3 PALING AMAN */
-/* ============================= */
 .grid {
-  width: 100%;
-  height: 100%;
-  padding: 2%;
-
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  grid-template-rows: repeat(3, 1fr);
-  gap: 4%;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 18px;
+  padding: 20px;
 }
 
-/* CARD */
 .card {
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(145deg, #1a1a1a, #0f0f0f);
-  border: 2px solid #ff0033;
+  background: #1e293b;
   border-radius: 14px;
-  box-shadow:
-    0 0 10px rgba(255,0,51,.6),
-    inset 0 0 12px rgba(255,0,51,.3);
-}
-
-/* BOTTOM */
-.bottom {
+  overflow: hidden;
   display: flex;
-  align-items: center;
-  justify-content: space-around;
-  background: #111;
-  border-top: 2px solid #ff0033;
+  flex-direction: column;
+  box-shadow: 0 6px 15px rgba(0,0,0,.4);
 }
 
-.bottom span {
-  color: #ff0033;
-  font-size: 12px;
+.card img {
+  width: 100%;
+  height: 170px;
+  object-fit: cover;
+  background: black;
+}
+
+.card-body {
+  padding: 14px;
+  flex: 1;
+}
+
+.nama {
+  font-weight: bold;
+  margin-bottom: 6px;
+}
+
+.harga {
+  color: #22c55e;
+  font-weight: bold;
+  margin-bottom: 6px;
+}
+
+.stok {
+  font-size: 13px;
+  opacity: .8;
+}
+
+.btn {
+  margin: 12px;
+  padding: 10px;
+  border: none;
+  border-radius: 10px;
+  background: #22c55e;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+footer {
+  text-align: center;
+  padding: 20px;
+  font-size: 13px;
+  opacity: .6;
 }
